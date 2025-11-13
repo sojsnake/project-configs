@@ -17,7 +17,7 @@ spring:
             failureRateThreshold: 50  # 실패율이 50%를 초과하면 회로 차단 (% 기준)
             waitDurationInOpenState: 5s  # 회로가 열린 상태로 유지되는 시간 (30초)
             recordExceptions: # 실패로 간주할 예외 목록
-              - java.io.RuntimeException
+              - java.lang.RuntimeException
               - org.springframework.web.client.HttpServerErrorException
 
 feign:
@@ -44,7 +44,7 @@ resilience4j:
         enableExponentialBackoff: true  # 지수 백오프 활성화 (재시도마다 대기 시간 증가)
         exponentialBackoffMultiplier: 2.0  # 각 재시도마다 대기 시간이 2배로 증가
         retryExceptions:  # 재시도할 예외 목록
-          - java.io.RuntimeException
+          - java.lang.RuntimeException
 
   bulkhead:  # 벌크헤드 설정 (동시 호출 제한)
     configs:
