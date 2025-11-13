@@ -25,6 +25,25 @@ spring:
             recordExceptions: # 실패로 간주할 예외 목록
               - java.lang.RuntimeException
               - org.springframework.web.client.HttpServerErrorException
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "https://keycloak.code-factory.co.kr/realms/codefactory"
+      client:
+        registration:
+          keycloak:
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:3000/v1/user/authorization/code"
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          keycloak:
+            issuer-uri: "https://keycloak.code-factory.co.kr/realms/codefactory
 
 feign:
   client:
@@ -39,6 +58,14 @@ management:
     web:
       exposure:
         include: refresh
+
+keycloak:
+  server-url: https://keycloak.code-factory.co.kr
+  realm: codefactory
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  admin-username: ${KEYCLOAK_ADMIN_USERNAME}
+  admin-password: ${KEYCLOAK_ADMIN_PASSWORD}
 
 resilience4j:
   retry:  # 재시도 설정
