@@ -2,4 +2,4 @@ rabbit:
   product:
     exchange: spartahub
     queue: hub
-    routing-key: product.#
+    routing-key: 'product.#'
