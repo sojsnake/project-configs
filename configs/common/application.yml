@@ -59,6 +59,13 @@ management:
       exposure:
         include: refresh
 
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans" # Zipkin 수집 서버의 엔드포인트 URL을 입력합니다.
+  tracing:
+    sampling:
+      probability: 1.0
+
 keycloak:
   server-url: https://keycloak.code-factory.co.kr
   realm: codefactory
